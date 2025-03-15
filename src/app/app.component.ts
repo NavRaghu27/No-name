@@ -1,13 +1,23 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styles: ''
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'project-app';
+
+  message: string = '';
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    this.http.get<{ message: string }>('http://localhost:3000/api/message').subscribe(data => {
+      this.message = data.message;
+    });
+  }
 }
