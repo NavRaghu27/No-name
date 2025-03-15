@@ -40,7 +40,7 @@ spec:
     - port: 3000
       targetPort: 3000
   selector:
-    app: node-app
+    app: node-service
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -50,11 +50,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: node-app
+      app: node-service
   template:
     metadata:
       labels:
-        app: node-app
+        app: node-service
     spec:
       containers:
         - name: node-container
