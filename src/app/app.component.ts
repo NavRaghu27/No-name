@@ -1,10 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './app.component.html',
   styles: ''
 })
@@ -16,8 +17,5 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.http.get<{ message: string }>('http://localhost/api/message').subscribe(data => {
-      this.message = data.message;
-    });
   }
 }
